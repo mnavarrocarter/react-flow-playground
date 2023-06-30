@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "start",
+      "type": "workflowStart",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "Ongoing Performance Concerns Workflow"
+      }
+    },
+    {
+      "id": "meeting",
+      "type": "agentInput",
+      "position": {
+        "x": 0,
+        "y": 100
+      },
+      "data": {
+        "label": "Hold Meeting and Agree on Actions",
+        "options": [
+          {
+            "id": "held",
+            "label": "Meeting Held"
+          },
+          {
+            "id": "not-held",
+            "label": "Meeting Not Held"
+          }
+        ]
+      }
+    },
+    {
+      "id": "send-pip-template",
+      "type": "automatedAction",
+      "position": {
+        "x": 200,
+        "y": 200
+      },
+      "data": {
+        "label": "Send PIP Template To Line Manager"
+      }
+    },
+    {
+      "id": "send-reminder-to-line-manager",
+      "type": "automatedAction",
+      "position": {
+        "x": -200,
+        "y": 200
+      },
+      "data": {
+        "label": "Send Reminder to Line Manager"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-to-meeting",
+      "source": "start",
+      "target": "meeting"
+    },
+    {
+      "id": "meeting-held-to-send-pip-template",
+      "source": "meeting",
+      "sourceHandle": "held",
+      "target": "send-pip-template",
+      "label": "Meeting Held"
+    },
+    {
+      "id": "meeting-not-held-to-send-reminder-to-line-manager",
+      "source": "meeting",
+      "sourceHandle": "not-held",
+      "target": "send-reminder-to-line-manager",
+      "label": "Meeting Not Held"
+    }
+  ]
+}
